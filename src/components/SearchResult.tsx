@@ -14,7 +14,6 @@ export default function SearchResult({ flightInfos }: SearchResultProps) {
   function handleBooking(flightInfo: FlightInfo[]) {
     setVisible(true);
     setBooking(flightInfo);
-    console.log(flightInfo);
   }
 
   const panelHeader = `${flightInfos.length} flights match found`;

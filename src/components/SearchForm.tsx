@@ -58,7 +58,9 @@ export default function SearchForm({ onSearch, onClear }: SearchFormProps) {
   }, [isRoundTrip, fromCity, toCity, fromDate, toDate]);
 
   useEffect(() => {
-    setToDate(null);
+    if (!isRoundTrip) {
+      setToDate(null);
+    }
   }, [isRoundTrip]);
 
   const handleSearchFlight = () => {
