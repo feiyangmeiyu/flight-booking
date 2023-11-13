@@ -6,4 +6,5 @@ export interface FlightInfo {
   ToAirportName: string;
   AirlineName: string;
   ScheduledTimeFull: string;
+  id?: string;
 }

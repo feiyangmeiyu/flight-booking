@@ -1,16 +1,20 @@
 import FlightInfoCard from '../components/FlightInfoCard';
 import { Panel } from 'primereact/panel';
 import { Paginator, PaginatorPageChangeEvent } from 'primereact/paginator';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FlightInfo } from '../interfaces/Flight.interface';
 import { Dialog } from 'primereact/dialog';
 
 interface SearchResultProps {
   /** The list of flight information to display */
   flightInfos: FlightInfo[][];
+  isSearching: boolean;
 }
 
-export default function SearchResult({ flightInfos }: SearchResultProps) {
+export default function SearchResult({
+  flightInfos,
+  isSearching,
+}: SearchResultProps) {
   function handleBooking(flightInfo: FlightInfo[]) {
     setVisible(true);
     setBooking(flightInfo);
@@ -20,6 +24,14 @@ export default function SearchResult({ flightInfos }: SearchResultProps) {
   // Pagination
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(5);
+
+  const setInitialState = () => {
+    setFirst(0);
+    setRows(5);
+  };
+  useEffect(() => {
+    setInitialState();
+  }, [isSearching, flightInfos]);
 
   // Confirm booking dialog
   const [visible, setVisible] = useState(false);
@@ -37,9 +49,7 @@ export default function SearchResult({ flightInfos }: SearchResultProps) {
         <>
           <FlightInfoCard
             flightInfo={flightInfo}
-            key={
-              flightInfo[0].FlightId + flightInfo[0].ScheduledTimeFull + index
-            }
+            key={flightInfo[0].id + index}
             onBook={handleBooking}
             showButton
           />

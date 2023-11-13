@@ -28,7 +28,7 @@ export default function FlightInfoCard({
           title={info.FlightId}
           subTitle={info.AirlineName + ' Airline'}
           className="m-2"
-          key={info.FlightId + info.ScheduledTimeFull}
+          key={info.id}
         >
           <p>
             <i className="pi pi-car mr-2" style={{ fontSize: '1rem' }}></i>{' '}

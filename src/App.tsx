@@ -42,7 +42,10 @@ function App() {
 
         {isSearching ? (
           <>
-            <SearchResult flightInfos={searchedFlightResults}></SearchResult>
+            <SearchResult
+              flightInfos={searchedFlightResults}
+              isSearching={isSearching}
+            ></SearchResult>
           </>
         ) : null}
       </div>

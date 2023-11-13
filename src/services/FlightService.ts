@@ -2,6 +2,7 @@ import { FlightInfo } from '../interfaces/Flight.interface';
 import * as dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import LocalizedFormat from 'dayjs/plugin/LocalizedFormat';
+import { v4 as uuidv4 } from 'uuid';
 
 dayjs.extend(customParseFormat);
 dayjs.extend(LocalizedFormat);
@@ -9,7 +10,12 @@ dayjs.extend(LocalizedFormat);
 class FlightService {
   private flightInfos;
   constructor(flightInfos: FlightInfo[]) {
-    this.flightInfos = flightInfos;
+    this.flightInfos = flightInfos.map((info) => {
+      return {
+        ...info,
+        id: uuidv4(),
+      };
+    });
   }
 
   private isBeforeByMinute(fromDate: string, toDate: string) {

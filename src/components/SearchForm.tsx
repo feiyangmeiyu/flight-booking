@@ -158,14 +158,16 @@ export default function SearchForm({ onSearch, onClear }: SearchFormProps) {
             date={fromDate}
             placeholder="Select take off date"
             onSelectDate={setFromDate}
+            visible
           ></DateSelector>
-          {isRoundTrip ? (
-            <DateSelector
-              date={toDate}
-              placeholder="Select return date"
-              onSelectDate={setToDate}
-            ></DateSelector>
-          ) : null}
+
+          <DateSelector
+            date={toDate}
+            placeholder="Select return date"
+            onSelectDate={setToDate}
+            visible={isRoundTrip}
+          ></DateSelector>
+
           <Button
             icon="pi pi-search"
             label="Search"
